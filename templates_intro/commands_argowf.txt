@@ -1,0 +1,7 @@
+kubectl -n argo create -f wf-hello-world.yaml 
+
+kubectl -n argo create -f wf-container-template.yaml 
+
+kubectl -n argo create -f wf-script-template.yaml 
+
+kubectl -n argo create -f wf-resource-template.yaml 

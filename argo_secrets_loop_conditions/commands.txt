@@ -1,0 +1,17 @@
+# create a secret 
+kubectl -n argo create secret generic test-secret --from-file=test-password=test_password_file.txt
+
+# check if secret was created:
+kubectl -n argo get secrets
+
+# get info of secret we created. 
+kubectl -n argo describe secret test-secret 
+
+
+# Feeding secrets as ENVIRONMENT VARIABLE 
+# call argo secret workflow
+kubectl -n argo create secret generic test-secret --from-file=test-password=test_password_file.txt
+kubectl -n argo create -f wf-secrets-env.yaml 
+kubectl -n argo create -f wf-secrets-volume.yaml 
+kubectl -n argo create -f wf-loop.yaml 
+kubectl -n argo create -f wf-loop-sets.yaml 

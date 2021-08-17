@@ -1,0 +1,7 @@
+kubectl -n argo create -f wf-step-template-serial.yaml 
+
+kubectl -n argo create -f wf-step-template-parallel.yaml 
+
+kubectl -n argo create -f wf-step-template-suspend.yaml 
+
+kubectl -n argo create -f wf-dag-template.yaml 

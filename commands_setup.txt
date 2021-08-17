@@ -1,0 +1,75 @@
+aws eks --region eu-west-2 update-kubeconfig --name eks
+
+# go to pulumi -> eks repo 
+export KUBECONFIG=`pwd`/kubeconfig.json 
+
+
+kubectl create ns argo
+
+kubectl get ns 
+
+
+kubectl apply -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/quick-start-postgres.yaml
+kubectl apply -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/quick-start-postgres.yaml
+
+kubectl -n argo get pods
+
+
+# workflow-controller: controls work flow
+# argo-server: provides communication for create/delete resources + UI
+# minio: object storage for saving logs
+# postgres: provides archive work flows for longer time
+
+# If run locally: 
+kubectl -n argo port-forward deployment/argo-server 2746:2746
+# Then visit: localhost:2746 on browser. 
+
+
+
+# If argo is run on the cloud: 
+kubectl -n argo port-forward svc/argo-server 2746:2746
+
+
+# Then visit: https://127.0.0.1:2746
+# VISIT THIS!!! https://127.0.0.1:2746/
+kubectl patch svc argo-server -n argo -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc argo-server -n argo -p '{"spec": {"type": "LoadBalancer"}}'
+
+
+
+
+go to: https://127.0.0.1:2746/ 
+go to: https://127.0.0.1:2746
+go to: https://localhost:2746
+# If you have trouble with terraform destroy... make sure the elastic load balancer is deleted in VPC 
+
+
+=====
+CERT error 
+
+
+chrome -> settings -> security -> switched from "standard protection" to "no protection"
+go back to page and refresh 
+go to chrome -> settings -> security -> switched again to standard protection 
+click on page and write: "thisisunsafe"
+
+https://www.youtube.com/watch?v=6W5HY7Ilc5w 
+
+======
+
+
+
+
+minio logs: 
+
+kubectl -n argo get pods
+
+kubectl -n argo port-forward minio 9000:9000
+kubectl -n argo port-forward minio-58977b4b48-dspqh 9000:9000
+
+go to: 
+http://127.0.0.1:9000/minio/login 
+http://127.0.0.1:9000/
+
+user: admin
+password: password 

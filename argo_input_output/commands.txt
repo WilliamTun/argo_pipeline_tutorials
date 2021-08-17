@@ -1,0 +1,64 @@
+minio logs: 
+
+kubectl -n argo get pods
+
+kubectl -n argo port-forward minio 9000:9000
+kubectl -n argo port-forward minio-58977b4b48-dspqh 9000:9000
+
+go to: 
+http://127.0.0.1:9000/minio/login 
+http://127.0.0.1:9000/
+
+user: admin
+password: password 
+
+click on job logs to download. 
+
+
+# Archiving logs to object storage
+kubectl -n argo get configmap
+
+kubectl -n argo describe cm workflow-controller-configmap
+
+kubectl -n argo edit cm workflow-controller-configmap
+
+press i for insert mode
+> Section  4: Output Logs to MinIO 
+press esc 
+:wq + enter 
+
+
+
+=====
+kubectl -n argo create -f wf-input-parameter-dag.yaml 
+
+
+
+# download argocd:
+https://argoproj.github.io/argo-cd/cli_installation/
+
+
+kubectl -n argo get pods
+kubectl -n argo get svc argo-server
+# get EXTERNAL-IP 
+argocd --insecure login ${EXTERNAL-IP}:443
+argocd --insecure login ad6831885a2e649f0add9894ad881036-2005821606.eu-west-2.elb.amazonaws.com:443
+
+RESPONSE: 
+FATA[0040] dial tcp 18.169.56.56:443: operation was canceled 
+
+argocd -n argo submit wf-input-parameter-dag.yaml 
+argocd -n argo submit wf-input-parameter-dag.yaml -p message1="Parameter used from terminal"
+argocd -n argo submit wf-input-parameter-dag.yaml --parameter-file parameters.yaml 
+
+argocd -n argo list
+
+
+kubectl -n argo create -f wf-input-parameter-dag.yaml
+
+kubectl -n argo create -f wf-script-result.yaml
+
+ 
+kubectl -n argo create -f wf-output-parameter.yaml
+kubectl -n argo create -f wf-output-parameter-file.yaml
+kubectl -n argo create -f wf-artifact-template.yaml
