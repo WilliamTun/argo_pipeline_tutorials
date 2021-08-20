@@ -1,0 +1,8 @@
+kubectl logs -n argo -l app=workflow-controller
+
+kubectl -n argo get pods 
+kubectl -n argo describe pods/workflow-controller-7cb6896f44-k7fv4
+
+Deleting old workflows 
+https://github.com/kubeflow/testing/issues/53 
+

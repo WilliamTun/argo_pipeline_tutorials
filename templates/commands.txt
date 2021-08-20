@@ -1,0 +1,1 @@
+kubectl -n argo create -f workflow-template.yaml 

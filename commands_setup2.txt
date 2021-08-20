@@ -1,0 +1,16 @@
+This is the set up commands from this tutorial:
+https://www.youtube.com/watch?v=c3qJr6L8nHg&list=PLWnens-FYbIpUpmiiNYfkqTZQUYppGMFV&index=36
+
+kubectl create ns argo 
+
+kubectl apply -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/quick-start-postgres.yaml
+
+kubectl get all -n argo 
+kubectl get pods -n argo 
+
+kubectl -n argo port-forward deployment/argo-server 2746:2746
+
+
+use FIREFOX browser + 
+go to: 
+https://localhost:2746/workflows?limit=500

@@ -3,6 +3,12 @@ aws eks --region eu-west-2 update-kubeconfig --name eks
 # go to pulumi -> eks repo 
 export KUBECONFIG=`pwd`/kubeconfig.json 
 
+#kubectl config view > kubeconfig.json
+#export KUBECONFIG=`pwd`/kubeconfig.json 
+
+
+
+
 
 kubectl create ns argo
 
@@ -67,9 +73,18 @@ kubectl -n argo get pods
 kubectl -n argo port-forward minio 9000:9000
 kubectl -n argo port-forward minio-58977b4b48-dspqh 9000:9000
 
+kubectl -n argo port-forward minio-bbb49cb8c-qvbf6 9000:9000
+
+
 go to: 
 http://127.0.0.1:9000/minio/login 
 http://127.0.0.1:9000/
 
 user: admin
 password: password 
+
+
+kubectl -n argo get pods -o wide
+
+kubectl delete pods --all -n argo
+kubectl delete pods --all -n argo
