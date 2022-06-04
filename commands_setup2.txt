@@ -14,3 +14,11 @@ kubectl -n argo port-forward deployment/argo-server 2746:2746
 use FIREFOX browser + 
 go to: 
 https://localhost:2746/workflows?limit=500
+
+
+test hello world: 
+kubectl -n argo create -f wf-hello-world.yaml 
+
+cd squeeze
+kubectl -n argo create -f squeeze.yaml 
+kubectl -n argo create -f squeeze2.yaml 

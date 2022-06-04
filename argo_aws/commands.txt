@@ -1,0 +1,10 @@
+# create secrets
+kubectl -n argo create secret generic <name of secret> --from-file=access_key_id=<file> --from-file=secret_access_key=<file>
+
+
+kubectl -n argo create secret generic aws-credentials-test --from-file=access_key_id=aws_access_key_id.txt --from-file=secret_access_key=aws_secret_access_key.txt 
+
+kubectl -n argo describe secret aws-credentials-test 
+
+kubectl -n argo create -f wf-artifact-s3.yaml 
+
