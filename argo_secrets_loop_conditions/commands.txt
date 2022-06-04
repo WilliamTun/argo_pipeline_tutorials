@@ -15,3 +15,19 @@ kubectl -n argo create -f wf-secrets-env.yaml
 kubectl -n argo create -f wf-secrets-volume.yaml 
 kubectl -n argo create -f wf-loop.yaml 
 kubectl -n argo create -f wf-loop-sets.yaml 
+kubectl -n argo create -f wf-loops-inputparam.yaml 
+kubectl -n argo create -f wf-loops-dynamic.yaml 
+kubectl -n argo create -f wf-conditionals.yaml
+kubectl -n argo create -f wf-depends.yaml
+kubectl -n argo create -f wf-retryStrategy.yaml
+
+
+
+# TASK RESULTS:
+
+.Succeeded
+.Failed 
+.Errored 
+.Skipped 
+.Daemoned 
+

@@ -1,0 +1,33 @@
+kubectl -n argo create -f workflow-template.yaml 
+
+
+# CRON 
+schedule: * * * * * 
+schedule: minute hour day-of-month month day-of-week 
+
+1. minute (60) 
+2. hour (60)
+3. day-of-month (1-31) 
+4. month (1-12)
+5. day-of-week (0-6 sunday-saturday)
+
+# NEED argo cli for cronjobs (?)
+argo -n argo submit 
+
+
+# NEED argo cli for cluster workflows 
+argo -n argo cluster-template create workflow-clusterwf.yaml 
+# with this style of template... you have access to ALL namespaces in the cluster 
+
+
+# Create a kubernetes secret
+create a file called aws_access_key_id.txt 
+create a file called aws_secret_access_key.txt 
+populate it with relevant info 
+
+# create a kubernetes secret: 
+kubectl -n argo create secret generic aws-credentials-test --from-file=access_key_id=aws_access_key_id.txt --from-file=secret_access_key=aws_secret_access_key.txt   
+
+kubectl -n argo get secrets
+kubectl -n argo describe secret aws-credentials-test
+kubectl -n argo create -f wf-artifact-template-s3.yaml
